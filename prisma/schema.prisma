@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Promotion {
+  id              String    @id @default(uuid())
+  title           String
+  description     String?
+  storeName       String
+  companyId       String?
+  imageUrl        String?
+  productUrl      String
+  affiliateUrl    String?
+  oldPrice        Float?
+  newPrice        Float
+  discountPercent Float?
+  couponCode      String?
+  type            String    @default("online")
+  source          String
+  sourceItemId    String
+  category        String?
+  neighborhood    String?
+  city            String?
+  state           String?
+  isFeatured      Boolean   @default(false)
+  isActive        Boolean   @default(true)
+  expiresAt       DateTime?
+  importedAt      DateTime  @default(now())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([source, sourceItemId])
+  @@index([type])
+  @@index([source])
+  @@index([isActive])
+  @@index([isFeatured])
+  @@index([category])
+  @@index([city])
+}
+
+model ImportLog {
+  id             String   @id @default(uuid())
+  source         String
+  status         String
+  totalFetched   Int      @default(0)
+  totalInserted  Int      @default(0)
+  totalUpdated   Int      @default(0)
+  totalDisabled  Int      @default(0)
+  message        String?
+  createdAt      DateTime @default(now())
+
+  @@index([source])
+  @@index([createdAt])
+}
+
+model Source {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  displayName String
+  isActive    Boolean  @default(true)
+  config      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

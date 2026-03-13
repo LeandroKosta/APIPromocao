@@ -1,0 +1,44 @@
+{
+  "name": "promotions-api",
+  "version": "1.0.0",
+  "description": "API externa de promoções para Guia Comercial Digital",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "validate": "bash scripts/validate-api.sh"
+  },
+  "keywords": [
+    "promotions",
+    "api",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.9.1",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "pg": "^8.20.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.16",
+    "@types/node-cron": "^3.0.11",
+    "jest": "^29.7.0",
+    "prisma": "^5.9.1",
+    "ts-jest": "^29.1.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
