@@ -1,0 +1,1 @@
+﻿import { PrismaClient } from "@prisma/client"; const p = new PrismaClient(); p.promotion.findMany({ where: { isActive: true } }).then(r => { console.log("Total ativas:", r.length); r.forEach(x => console.log(x.sourceItemId, x.title, x.isActive)); p.$disconnect(); });

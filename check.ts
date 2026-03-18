@@ -1,0 +1,1 @@
+﻿import { PrismaClient } from "@prisma/client"; const p = new PrismaClient(); p.promotion.findMany({ select: { sourceItemId: true, title: true, isActive: true, expiresAt: true, isFeatured: true, imageUrl: true, productUrl: true } }).then(r => { r.forEach(x => console.log(JSON.stringify(x))); p.$disconnect(); });
